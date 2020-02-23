@@ -30,22 +30,22 @@ WaterModul::WaterModul(byte subaddress) : SensorModul(ADDRESS, subaddress)
 
 void WaterModul::Refress_PH()
 {
-  PH = c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetPhDataType, PH);
+  PH = random(300);//c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetPhDataType, PH);
 }
 
 void WaterModul::Refress_EC()
 {
-  EC = c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetECDataType, EC);
+  EC =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetECDataType, EC);
 }
 
 void WaterModul::Refress_Water_Temperature()
 {
-  Water_Temperature = c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetTempDataType, Water_Temperature);
+  Water_Temperature =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetTempDataType, Water_Temperature);
 }
 
 void WaterModul::Refress_Water_Level()
 {
-  Water_Level = c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Water_Level);
+  Water_Level =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Water_Level);
 }
 void WaterModul::RefressValues()
 {
@@ -55,9 +55,8 @@ void WaterModul::RefressValues()
   Refress_Water_Level();
 }
 
-void WaterModul::ValuesJSON(JsonObject modulJO)
+void WaterModul::ValuesJSON(JsonObject values)
 {
-  JsonObject values = modulJO.createNestedObject("Values");
   values["PH"] = PH;
   values["EC"] = EC;
   values["Water_Temperature"] = Water_Temperature;

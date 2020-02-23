@@ -3,6 +3,8 @@ void TestSetup()
  blocks.add(new Block("Test chamber"));
 }
 
+String ESP_MAC;
+
 void ConnectWifi(){
     // Configures static IP address
   if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) {
@@ -20,6 +22,7 @@ void ConnectWifi(){
   Serial.println("");
   Serial.print("Connected to WiFi network with IP Address: ");
   Serial.println(WiFi.localIP());
+  ESP_MAC = WiFi.macAddress();
 }
 
 String ipToString(IPAddress ip) {

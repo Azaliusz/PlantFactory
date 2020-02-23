@@ -33,7 +33,7 @@ PubSubClient client(espClient); //lib required for mqtt
 
 #include "Block.h"
 
-//START--------------------------------------Wifi and MQTT parameters--------------------------------------------
+//START--------------------------------------Wifi parameters--------------------------------------------
 //WIFI parameters
 const char* ssid     = "Workstation";
 const char* password = "EP56.csf78";
@@ -47,9 +47,7 @@ IPAddress subnet(255, 255, 255, 0);
 IPAddress primaryDNS(8, 8, 8, 8);   //optional
 IPAddress secondaryDNS(8, 8, 4, 4); //optional
 
-//MQTT parameters
-//const char* mqtt_server = "192.168.43.98"; //mqtt server
-//END---------------------------------------- Wifi and MQTT parameters--------------------------------------------
+//END---------------------------------------- Wifi parameters--------------------------------------------
 
 LinkedList<Block*> blocks = LinkedList<Block*>();
 
@@ -84,6 +82,7 @@ void loop() {
     //Serial.print("MÉRÉS:");
    // Serial.println();
   }
+  
   if (WiFi.status() == WL_CONNECTED)
   {
     if (millis() > last_send + send_period)
@@ -93,7 +92,9 @@ void loop() {
       //Serial.println("Measurement send");
     }
   }
-  else {
-   // Serial.println("WiFi Disconnected");
+  else 
+  {
+    Serial.println("WiFi Disconnected");
+    ConnectWifi();
   }
 }

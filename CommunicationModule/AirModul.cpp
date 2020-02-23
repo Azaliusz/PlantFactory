@@ -31,32 +31,32 @@ AirModul::AirModul(byte subaddress) : SensorModul(ADDRESS, subaddress)
 
 void AirModul::Refress_CO2()
 {
- // CO2 = c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetPhDataType, CO2);
+  CO2 =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetPhDataType, CO2);
 }
 
 void AirModul::Refress_Humidity()
 {
- // Humidity = c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetECDataType, Humidity);
+  Humidity =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetECDataType, Humidity);
 }
 
 void AirModul::Refress_Air_Temperature()
 {
-  //Air_Temperature = c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetTempDataType, Air_Temperature);
+  Air_Temperature =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetTempDataType, Air_Temperature);
 }
 
 void AirModul::Refress_Light()
 {
- // Light = c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Light);
+  Light =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Light);
 }
 
 void AirModul::Refress_Light_IR()
 {
- // Light_IR = c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Light_IR);
+  Light_IR =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Light_IR);
 }
 
 void AirModul::Refress_Light_UV()
 {
- // Light_UV = c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Light_UV);
+  Light_UV =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Light_UV);
 }
 
 void AirModul::RefressValues()
@@ -69,9 +69,8 @@ void AirModul::RefressValues()
   Refress_Light_UV();
 }
 
-void AirModul::ValuesJSON(JsonObject modulJO)
+void AirModul::ValuesJSON(JsonObject values)
 {
-  JsonObject values = modulJO.createNestedObject("Values");
   values["CO2"] = CO2;
   values["Humidity"] = Humidity;
   values["Air_Temperature"] = Air_Temperature;
