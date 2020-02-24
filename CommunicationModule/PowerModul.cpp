@@ -64,4 +64,13 @@ void PowerModul::Set_Water_Temperature_Sensor(byte subaddress)
 
 //END------------------------------------Water_Temp---------------------------------------------
 
-void PowerModul::SetActuatorValue(JsonObject value){}// EZ NEM RELEVÁNS
+void PowerModul::SetActuatorValue(JsonObject value) {} // EZ NEM RELEVÁNS
+
+String PowerModul::ShowModul()
+{
+  return AcutuatorModul::ShowModul();
+  /*String ret = "";
+  ret += "Address/sub: " + String( Get_Address()) + "/" + String(Get_Subaddress()) + "\n";
+  ret += "Enable: " + String(Is_Enabled); // csak virtuális
+  return ret;*/
+}

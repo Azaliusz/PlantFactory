@@ -4,7 +4,8 @@ Block::Block(String block_name)
 {
 
   Block_Name = block_name;
-
+  Block_ID=100;
+  Enable=true;
   //TEST
   AddModul(1, 1);
   AddModul(2, 1);
@@ -22,6 +23,25 @@ void Block::RefressALL()
       SensorModules.get(i)->RefressValues();
     }
   }
+}
+
+String Block::ShowBlock()
+{
+  String ret="";
+  ret+=">>Name: "+Block_Name+" ("+Block_ID+"):"+Enable+"\n";
+  
+  ret+=">>  SensorModules:\n";
+  for (int i = 0; i < SensorModules.size(); ++i)
+  {
+   ret+=SensorModules.get(i)->ShowModul()+"\n";
+  }
+
+  ret+=">>  AcutuatorModuls:\n";
+  for (int i = 0; i < AcutuatorModuls.size(); ++i)
+  {
+    ret+=AcutuatorModuls.get(i)->ShowModul()+"\n";
+  }
+  return ret;
 }
 
 void Block::AddModul(byte address, byte subaddress)

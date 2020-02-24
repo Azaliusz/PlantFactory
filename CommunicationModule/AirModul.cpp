@@ -31,32 +31,32 @@ AirModul::AirModul(byte subaddress) : SensorModul(ADDRESS, subaddress)
 
 void AirModul::Refress_CO2()
 {
-  CO2 =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetPhDataType, CO2);
+  CO2 = random(300); // c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetPhDataType, CO2);
 }
 
 void AirModul::Refress_Humidity()
 {
-  Humidity =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetECDataType, Humidity);
+  Humidity = random(300); // c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetECDataType, Humidity);
 }
 
 void AirModul::Refress_Air_Temperature()
 {
-  Air_Temperature =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetTempDataType, Air_Temperature);
+  Air_Temperature = random(300); // c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetTempDataType, Air_Temperature);
 }
 
 void AirModul::Refress_Light()
 {
-  Light =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Light);
+  Light = random(300); // c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Light);
 }
 
 void AirModul::Refress_Light_IR()
 {
-  Light_IR =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Light_IR);
+  Light_IR = random(300); // c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Light_IR);
 }
 
 void AirModul::Refress_Light_UV()
 {
-  Light_UV =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Light_UV);
+  Light_UV = random(300); // c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Light_UV);
 }
 
 void AirModul::RefressValues()
@@ -77,4 +77,12 @@ void AirModul::ValuesJSON(JsonObject values)
   values["Light"] = Light;
   values["Light_IR"] = Light_IR;
   values["Light_UV"] = Light_UV;
+}
+
+String AirModul::ShowModul()
+{
+  String ret = "";
+  ret += "Address/sub: " +String( Get_Address()) + "/" + String(Get_Subaddress())+"\n";
+  ret+="Enable: "+String(Is_Enabled);// csak virtuális
+  return ret;
 }

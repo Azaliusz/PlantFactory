@@ -43,6 +43,7 @@ void Modul::Set_Subaddress(byte subaddress)
 SensorModul::SensorModul(byte address, byte subaddress): Modul(address, subaddress) {}
 void SensorModul::RefressValues() {}
 void SensorModul::ValuesJSON(JsonObject doc_0 ) {}
+String SensorModul::ShowModul() {}
 //END---------------------------------------SENSOR--------------------------------------------
 
 //START-----------------------------------ACTUATOR--------------------------------------------
@@ -50,7 +51,7 @@ AcutuatorModul::AcutuatorModul(byte address, byte subaddress): Modul(address, su
 
 void AcutuatorModul::Set_Mode(int mode)
 {
-   c.SetUInt16(Get_Address(), Get_Subaddress(), 4, 61, mode);
+  c.SetUInt16(Get_Address(), Get_Subaddress(), 4, 61, mode);
   _Mode = mode;
 }
 int AcutuatorModul::Get_Mode()
@@ -58,5 +59,9 @@ int AcutuatorModul::Get_Mode()
   return _Mode;
 }
 
-void AcutuatorModul::SetActuatorValue(JsonObject val){}
+void AcutuatorModul::SetActuatorValue(JsonObject val) {}
+String AcutuatorModul::ShowModul()
+{
+  return "Fasz";
+}
 //END-------------------------------------ACTUATOR--------------------------------------------

@@ -1,12 +1,12 @@
 void TestSetup()
 {
- blocks.add(new Block("Test chamber"));
+  blocks.add(new Block("Test chamber"));
 }
 
 String ESP_MAC;
 
-void ConnectWifi(){
-    // Configures static IP address
+void ConnectWifi() {
+  // Configures static IP address
   if (!WiFi.config(local_IP, gateway, subnet, primaryDNS, secondaryDNS)) {
     Serial.println("STA Failed to configure");
   }
@@ -25,6 +25,24 @@ void ConnectWifi(){
   ESP_MAC = WiFi.macAddress();
 }
 
+
+String command;
+
+void ESPConsole()
+{
+  if (Serial.available() > 0)
+  {
+    command = Serial.readString();
+    if (command == "show")
+    {
+      for (int i = 0; i < blocks.size(); ++i)
+      {
+        Serial.println(blocks.get(i)->ShowBlock());
+      }
+    }
+  }
+}
+
 String ipToString(IPAddress ip) {
   String s = "";
   for (int i = 0; i < 4; i++)
@@ -39,7 +57,7 @@ void Measure()
 {
   for (int i = 0; i < blocks.size(); ++i)
   {
-   blocks.get(i)->RefressALL();
+    blocks.get(i)->RefressALL();
   }
 }
 //END----------------------------------------Measure--------------------------------------------

@@ -73,7 +73,7 @@ void loop() {
 
   //webSocket.loop();
   mqttloop();
-
+  ESPConsole();
   if (millis() > last_measurement + measurement_period)
   {
     last_measurement = millis();

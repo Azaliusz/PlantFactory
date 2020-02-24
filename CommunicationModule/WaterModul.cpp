@@ -47,6 +47,7 @@ void WaterModul::Refress_Water_Level()
 {
   Water_Level =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Water_Level);
 }
+
 void WaterModul::RefressValues()
 {
   Refress_PH();
@@ -61,4 +62,12 @@ void WaterModul::ValuesJSON(JsonObject values)
   values["EC"] = EC;
   values["Water_Temperature"] = Water_Temperature;
   values["Water_Level"] = Water_Level;
+}
+
+String WaterModul::ShowModul()
+{
+  String ret = "";
+  ret += "Address/sub: " + String(Get_Address()) + "/" + String(Get_Subaddress())+"\n";
+  ret+="Enable: "+String(Is_Enabled);// csak virtuális
+  return ret;
 }

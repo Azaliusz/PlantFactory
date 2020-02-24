@@ -4,6 +4,8 @@ const int mqtt_port = 1883; //MQTT portja
 //---------------------MQTT topics---------------------
 const char* last_will_topic = "PF/Disconnected";
 const char* connection_topic = "PF/Connected";
+const char* set_actuator_topic = "SetActuator";
+const char* enable_modul_topic = "EnableModul"; //TODO: array
 
 void ConnectMQTT()//MQTT brokerhez csatlakoás
 {
@@ -49,11 +51,21 @@ void subscribeTopics()//Topicokra feliratkozás
   String own_topic = "PF/";
   own_topic += WiFi.macAddress().c_str();
   client.subscribe(own_topic.c_str());
+  String topic=own_topic+"/"+set_actuator_topic;
+  client.subscribe(topic.c_str());//SetActuatorTopic
+
+   topic=own_topic+"/"+enable_modul_topic;
+   client.subscribe(topic.c_str());//Enablemodul Topic
 }
 
 
 void callback(char* topic, byte* payload, unsigned int length)
 {
+
+  //Topic kiirása soros portra
+  Serial.print("Message arrived in topic: ");
+  Serial.println(topic);
+  
   String processedtopic = MQTTTopic((String)topic);
 
   if (processedtopic == "SetActuator") {
@@ -69,7 +81,6 @@ String MQTTTopic(String topic)
 {
   int topicstart = topic.substring(3).indexOf('/');
   return topic.substring(topicstart + 4);
-
 }
 
 

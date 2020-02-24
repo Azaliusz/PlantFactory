@@ -38,6 +38,7 @@ class SensorModul: public Modul //Destruktor!
     SensorModul(byte address, byte subaddress);
     virtual void RefressValues();
     virtual void ValuesJSON(JsonObject modulJO);
+    virtual String ShowModul();
 };
 
 class AcutuatorModul: public Modul //Destruktor!
@@ -46,8 +47,8 @@ class AcutuatorModul: public Modul //Destruktor!
     AcutuatorModul(byte address, byte subaddress);
     void Set_Mode(int mode);
     int Get_Mode();
-
     virtual void SetActuatorValue(JsonObject value);
+    virtual String ShowModul();
   private:
     int _Mode;
 };
@@ -75,6 +76,7 @@ class AirModul: public SensorModul //Destruktor!
 
     virtual void RefressValues();
     virtual void ValuesJSON(JsonObject modulJO);
+    virtual String ShowModul();
     //Communication
     //Minden féle kommunikációs cucc (Modnjuk ezek közül lehet hogy valami az ösben lesz)
   private:
@@ -99,6 +101,7 @@ class WaterModul: public SensorModul //Destruktor!
 
     virtual void RefressValues();
     virtual void ValuesJSON(JsonObject modulJO);
+    virtual String ShowModul();
     //Communication
     //Minden féle kommunikációs cucc (Modnjuk ezek közül lehet hogy valami az ösben lesz)
   private:
@@ -122,6 +125,7 @@ class PowerModul: public AcutuatorModul //Destruktor!
     void Set_Water_Temperature_Sensor(byte subaddress);
 
     virtual void SetActuatorValue(JsonObject value);
+    virtual String ShowModul();
 
   private:
     //Air_Temperature
@@ -151,6 +155,8 @@ class FanModul: public AcutuatorModul //Destruktor!
     void Set_Time_Interval(int t);
 
     virtual void SetActuatorValue(JsonObject value);
+    virtual String ShowModul();
+
   private:
     int _Time_Interval;
 };
@@ -163,6 +169,8 @@ class LightModul: public AcutuatorModul //Destruktor!
     void Set_Time_Interval(int t);
 
     virtual void SetActuatorValue(JsonObject value);
+    virtual String ShowModul();
+
   private:
     int _Time_Interval;
 };
@@ -183,6 +191,7 @@ class Block //Destruktor!
     AcutuatorModul*  FindAcutuatorModul(byte address, byte subaddress); //megirni
     void AddModul(byte address, byte subaddress);
     void RefressALL();
+    String ShowBlock();
     //void ValuesToActuators(); erre nem lesz szükseg
 
   private:

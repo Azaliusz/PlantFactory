@@ -28,3 +28,11 @@ void LightModul::SetActuatorValue(JsonObject value)
   //Serial.println(percent);
   Activate(val);
 }
+
+String LightModul::ShowModul()
+{
+  String ret = "";
+  ret += "Address/sub: " + String( Get_Address()) + "/" + String(Get_Subaddress()) + "\n";
+  ret += "Enable: " + String(Is_Enabled); // csak virtuális
+  return ret;
+}
