@@ -35,13 +35,13 @@ PubSubClient client(espClient); //lib required for mqtt
 
 //START--------------------------------------Wifi parameters--------------------------------------------
 //WIFI parameters
-const char* ssid     = "Workstation";
-const char* password = "EP56.csf78";
+const char* ssid     = "MaxxAudio_SC";
+const char* password = "maxxaudioXXXX";
 
 // Set your Static IP address
-IPAddress local_IP(192, 168, 43, 10);
+IPAddress local_IP(10, 0, 0, 50);
 // Set your Gateway IP address
-IPAddress gateway(192, 168, 43, 10);
+IPAddress gateway(10, 0, 0, 1);
 
 IPAddress subnet(255, 255, 255, 0);
 IPAddress primaryDNS(8, 8, 8, 8);   //optional

@@ -1,11 +1,15 @@
-const char* mqtt_server = "192.168.43.98"; //MQTT szerver címe
+const char* mqtt_server = "10.0.0.47"; //MQTT szerver címe
 const int mqtt_port = 1883; //MQTT portja
 
 //---------------------MQTT topics---------------------
 const char* last_will_topic = "PF/Disconnected";
 const char* connection_topic = "PF/Connected";
-const char* set_actuator_topic = "SetActuator";
-const char* enable_modul_topic = "EnableModul"; //TODO: array
+
+  const char* enable_modul_topic = "EnableModul"; //TODO: array
+
+  const char* actuator_mode_topic = "Actuator/Mode";
+  const char* actuator_value_topic = "Actuator/Value";
+  const char* actuator_act_topic = "Actuator/Act";  
 
 void ConnectMQTT()//MQTT brokerhez csatlakoás
 {
@@ -51,11 +55,19 @@ void subscribeTopics()//Topicokra feliratkozás
   String own_topic = "PF/";
   own_topic += WiFi.macAddress().c_str();
   client.subscribe(own_topic.c_str());
-  String topic=own_topic+"/"+set_actuator_topic;
+
+  String topic = own_topic + "/" + enable_modul_topic;
   client.subscribe(topic.c_str());//SetActuatorTopic
 
-   topic=own_topic+"/"+enable_modul_topic;
-   client.subscribe(topic.c_str());//Enablemodul Topic
+  topic = own_topic + "/" + actuator_mode_topic;
+  client.subscribe(topic.c_str());//Enablemodul Topic
+
+
+  topic = own_topic + "/" + actuator_value_topic;
+  client.subscribe(topic.c_str());//Enablemodul Topic
+
+  topic = own_topic + "/" + actuator_act_topic;
+  client.subscribe(topic.c_str());//Enablemodul Topic
 }
 
 
@@ -67,7 +79,7 @@ void callback(char* topic, byte* payload, unsigned int length)
   Serial.println(topic);
   
   String processedtopic = MQTTTopic((String)topic);
-
+  
   if (processedtopic == "SetActuator") {
     SetActuator_Topic(payload);
   }
