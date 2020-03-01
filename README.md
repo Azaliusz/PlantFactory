@@ -21,3 +21,12 @@ Raspbian install
         node-red-mongodb
         node-red-node-ui-table
 
+Communication Modul
+
+    -Arduino Libraries
+        ArduinoJSON
+        LinkedList
+        PubSubClient
+            -MQTT_MAX_PACKET_SIZE 2048
+            -MQTT_KEEPALIVE 5
+
