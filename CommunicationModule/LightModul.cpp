@@ -12,7 +12,7 @@ void LightModul::Activate(int percent)
     Set_Mode(Mode_Manual);
   }
   c.SetUInt16(Get_Address(), Get_Subaddress(), 4, 62, percent);// bekapcsolás
-  c.SetUInt16(Get_Address(), Get_Subaddress(), 4, 11, percent);// bekapcsolás
+//  c.SetUInt16(Get_Address(), Get_Subaddress(), 4, 11, percent);// bekapcsolás
 
 }
 
@@ -25,7 +25,8 @@ void LightModul::Set_Time_Interval(int t)
 void LightModul::SetActuatorValue(JsonObject value)
 {
   int val = value["Value"];
-  //Serial.println(percent);
+  //Serial.println(value);
+  Serial.println(val);
   Activate(val);
 }
 

@@ -12,6 +12,9 @@ Block::Block(String block_name)
   AddModul(3, 1);
   AddModul(4, 1);
   AddModul(5, 1);
+  AddModul(6, 1);
+  AddModul(7, 1);
+  
 }
 
 void Block::RefressALL()
@@ -61,6 +64,12 @@ void Block::AddModul(byte address, byte subaddress)
       break;
     case 5://LightModul
       AcutuatorModuls.add(new LightModul(subaddress));
+      break;
+      case 6://PumpModul
+      AcutuatorModuls.add(new PumpModul(subaddress));
+      break;
+      case 7://DoserModul
+      //AcutuatorModuls.add(new LightModul(subaddress));
       break;
     default:
 

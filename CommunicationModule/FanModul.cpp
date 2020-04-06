@@ -13,13 +13,13 @@ void FanModul::Activate(bool ON)
   }
   if (ON)
   {
-    //   Serial.println("bekapcsolás");
+       Serial.println("bekapcsolás");
     Set_Mode(Mode_Manual);
     c.SetUInt16(Get_Address(), Get_Subaddress(), 4, 10, 255);// bekapcsolás
   }
   else
   {
-    //  Serial.println("kikapcsolás");
+      Serial.println("kikapcsolás");
     Set_Mode(Mode_Manual);
     c.SetUInt16(Get_Address(), Get_Subaddress(), 4, 10, 0); // kikapcsolás
   }
@@ -33,7 +33,8 @@ void FanModul::Set_Time_Interval(int t)
 
 void FanModul::SetActuatorValue(JsonObject value)
 {
-  bool ON = value["On"];
+  Serial.println("asdasd");
+  bool ON = value["Value"];
   //Serial.println(ON);
   Activate(ON);
 }

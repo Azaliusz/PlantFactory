@@ -19,10 +19,10 @@
 # define ClockSynDataType 1
 
 // data types module
-# define GetTempDataType 10
+# define GetTempDataType 21
 # define GetPhDataType 11
 # define GetECDataType 12
-# define GetWaterLevelDataType 13
+# define GetWaterLevelDataType 20
 
 WaterModul::WaterModul(byte subaddress) : SensorModul(ADDRESS, subaddress)
 {
@@ -40,12 +40,12 @@ void WaterModul::Refress_EC()
 
 void WaterModul::Refress_Water_Temperature()
 {
-  Water_Temperature =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetTempDataType, Water_Temperature);
+  Water_Temperature = c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetTempDataType, Water_Temperature);
 }
 
 void WaterModul::Refress_Water_Level()
 {
-  Water_Level =random(300);// c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Water_Level);
+  Water_Level = c.GetFloat(Get_Address(), Get_Subaddress(), GetPacket, GetWaterLevelDataType, Water_Level);
 }
 
 void WaterModul::RefressValues()

@@ -8,10 +8,10 @@
 uint8_t SendBuffer[BufferSize];
 uint8_t ReqBuffer[BufferSize];
 
-uint16_t TimeOutCoumter = 0;
-uint16_t TimeOut = 10;
+uint32_t TimeOutCoumter = 0;
+uint32_t TimeOut = 10;
 
-uint32_t lastSend;
+uint64_t lastSend;
 
 #define RXD2 16
 #define TXD2 17
@@ -139,7 +139,7 @@ float Com:: GetFloat(uint8_t address, uint8_t subAddress, uint8_t packet, uint8_
     req = ReqBuffer[4] << 24 | ReqBuffer[5] << 16 | ReqBuffer[6] << 8 | ReqBuffer[7];
   }else
   {
-    return error;
+    return last;
   }
   return (float)req / 100;
     //return last;  

@@ -79,14 +79,23 @@ void callback(char* topic, byte* payload, unsigned int length)
   Serial.println(topic);
   
   String processedtopic = MQTTTopic((String)topic);
+  Serial.println(processedtopic);
   
-  if (processedtopic == "SetActuator") {
+  /*if (processedtopic == "EnableModul") {
     SetActuator_Topic(payload);
-  }
+  }*/
 
-  if (processedtopic == "SetActuatorMode") {
+  /*if (processedtopic == "Actuator/Mode") {
+    SetActuator_Topic(payload);
+  }*/
+
+  if (processedtopic == "Actuator/Value") {
     SetActuator_Topic(payload);
   }
+  
+   /*if (processedtopic == "Actuator/Act") {
+    SetActuator_Topic(payload);
+  }*/
 }
 
 String MQTTTopic(String topic)
@@ -147,7 +156,7 @@ void connectedMessage()//MQTT re csatlakozás után a MAC és IP elküldése
   doc["IP"] = ip.c_str();
 
   char buffer[512];
-  size_t n = serializeJson(doc, buffer);  //Adatok serializálása
+  size_t n = serializeJson(doc, buffer);  //Adatok serializálása 
   client.publish(connection_topic, buffer, n); //MQTT üzenet küldése
 }
 

@@ -161,6 +161,20 @@ class FanModul: public AcutuatorModul //Destruktor!
     int _Time_Interval;
 };
 
+class PumpModul: public AcutuatorModul //Destruktor!
+{
+  public:
+    PumpModul(byte subaddress);
+    void Activate(bool v);
+    void Set_Time_Interval(int t);
+
+    virtual void SetActuatorValue(JsonObject value);
+    virtual String ShowModul();
+
+  private:
+    int _Time_Interval;
+};
+
 class LightModul: public AcutuatorModul //Destruktor!
 {
   public:
