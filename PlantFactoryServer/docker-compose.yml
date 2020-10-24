@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto
+    ports:
+      - 1883:1883
+
+  database:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./PersistentData/db:/data/db
+    ports:
+      - 27017:27017
+
+  web:
+    build: ./plantfactoryweb
+    ports:
+      - 8080:8080
+    depends_on:
+      - node-red
+
+  node-red:
+    image: nodered/node-red:latest
+    environment:
+      - TZ=Europe/Amsterdam
+    ports:
+      - "1880:1880"
+    networks:
+      - node-red-net
+    volumes:
+      - ./plantfactorynodered:/data
+    depends_on:
+      - mqtt-broker
+      - database
+
+networks:
+  node-red-net:
