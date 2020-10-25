@@ -64,8 +64,34 @@ Az adatbázishoz a következőkkel lehet csatlakoni
 - Felhasználónév: **root**
 - Jelszó: **PF2020**
 
-Ez a felhasználó admin jogosúltságú úgyhogy csk óvatosan :)
+Ez a felhasználó admin jogosúltságú úgyhogy csak óvatosan :)
+
+A Node-Red az adatbázist a következőkkel csatlakozik
+
+- Host: **database**
+- Port: **27017**
+- Felhasználónév: **noderedtodatabase**
+- Jelszó: **PF2020nodered**
+- Adatbázis: **plantfactory**
 
 ### Permanens adatok
 
-Az első build-nél létrejön a mappában egy db nevü mappa. A MongoDB ebben a mappában fogja tárolni a benne található adatokat, így ha a konténer valamilyen olknál fogva törlésre kerül az adatok továbbra is megmaradnak. A docker-compose.yml újra build-elése után az adatok továbbra is elérhetőek lesznek a MongoDB konténeren belül
+Az első build-nél létrejön a mappában egy db nevü mappa. A MongoDB ebben a mappában fogja tárolni a benne található adatokat, így ha a konténer valamilyen oknál fogva törlésre kerül az adatok továbbra is megmaradnak. A docker-compose.yml újra build-elése után az adatok továbbra is elérhetőek lesznek a MongoDB konténeren belül.
+
+TODO: Jelenleg ha a MongoDB image előszőr buildelődik akkor nem jönnek létre a szükséges adatbázisok/gyüjtemények és felhasználók tehát kézzel kell létrehozni őket a következő parancsokkal a mongo image-n belül:
+
+```bash
+mongo --username root --password PF2020
+use plantfactory
+
+db.createUser(
+  {
+    user: "noderedtodatabase",
+    pwd: "PF2020nodered",
+    roles: [
+       { role: "readWrite", db: "plantfactory" }
+    ]
+  }
+)
+
+```

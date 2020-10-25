@@ -31,7 +31,7 @@ services:
       - node-red
 
   node-red:
-    image: nodered/node-red:latest
+    build: ./plantfactorynodered
     environment:
       - TZ=Europe/Budapest
     ports:
