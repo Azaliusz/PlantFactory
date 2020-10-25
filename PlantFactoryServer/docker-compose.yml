@@ -3,6 +3,8 @@ version: "3"
 services:
   mqtt-broker:
     image: eclipse-mosquitto
+    networks:
+      - mqtt-network
     ports:
       - 1883:1883
 
@@ -11,14 +13,18 @@ services:
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_PASSWORD: PF2020
     volumes:
-      - ./PersistentData/db:/data/db
+      - ./db:/data/db
+    networks:
+      - db-network
     ports:
       - 27017:27017
 
-  web:
+  webclient:
     build: ./plantfactoryweb
+    networks:
+      - mqtt-network
     ports:
       - 8080:8080
     depends_on:
@@ -27,16 +33,20 @@ services:
   node-red:
     image: nodered/node-red:latest
     environment:
-      - TZ=Europe/Amsterdam
+      - TZ=Europe/Budapest
     ports:
       - "1880:1880"
     networks:
-      - node-red-net
+      - mqtt-network
+      - db-network
     volumes:
       - ./plantfactorynodered:/data
+    links:
+      - "mqtt-broker:broker"
     depends_on:
       - mqtt-broker
       - database
 
 networks:
-  node-red-net:
+  mqtt-network:
+  db-network:
