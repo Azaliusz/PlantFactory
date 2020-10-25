@@ -1,8 +1,7 @@
 import Vue from "vue";
 export default {
-  login() {
-    Vue.axios.get("http://localhost:1880/login").then(response => {
-      console.log(response.data);
-    });
+  async login(loginObj) {
+    let response = Vue.axios.post("http://localhost:1880/login", loginObj);
+    return response;
   }
 };

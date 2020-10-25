@@ -66,7 +66,7 @@ Az adatbázishoz a következőkkel lehet csatlakoni
 
 Ez a felhasználó admin jogosúltságú úgyhogy csak óvatosan :)
 
-A Node-Red az adatbázist a következőkkel csatlakozik
+A Node-Red az adatbázis a következőkkel csatlakozik
 
 - Host: **database**
 - Port: **27017**
