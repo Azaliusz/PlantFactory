@@ -11,16 +11,18 @@ Tartalmaz:
 
 ## Projekt elindítása
 
-A projekt felépítéséhez szükség van a [Docker](https://www.docker.com/)-re. A könnyebb áttekinthetőség érdekébe érdemes telepíteni a Docker Desktop-ot
-Ennek telepítése után ebbeen a mappában kell futtatni a következő parancsot
+A projekt felépítéséhez szükség van a [Docker](https://www.docker.com/)-re.
+Ennek telepítése után ebben a mappában kell futtatni a következő parancsot:
 
 ```bash
 docker-compose -f "docker-compose.yml" up -d --build
 ```
 
+A könnyebb áttekinthetőség érdekébe érdemes telepíteni a Docker Desktop-ot és/vagy VS Code-ban való fejlesztés esetén a [Docker extension](https://code.visualstudio.com/docs/containers/overview)-t
+
 ## Portok
 
-A különböző kontánerekből a programok a következő portokon keresztül kommunikálnak a host géppel:
+A különböző konténerekből a programok a következő portokon keresztül kommunikálnak a host géppel:
 
 - **1880**: Node-Red
 - **1883**: Mosquitto MQTT bróker
@@ -29,7 +31,7 @@ A különböző kontánerekből a programok a következő portokon keresztül ko
 
 ## Konténerek hálózata
 
-A konténerek között két hálóat található:
+A konténerek között két hálózat található:
 
 1. mqtt-network:
 
