@@ -1,4 +1,4 @@
-const char* mqtt_server = "10.0.0.47"; //MQTT szerver címe
+const char* mqtt_server = "192.168.43.193"; //MQTT szerver címe
 const int mqtt_port = 1883; //MQTT portja
 
 //---------------------MQTT topics---------------------

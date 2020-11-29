@@ -27,21 +27,18 @@
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-          <router-link to="/login"
-            ><b-button variant="primary"> Bejelentkezés</b-button></router-link
-          >
-          <router-link to="/registration">
-            <b-button variant="light"> Regisztráció</b-button></router-link
-          >
-        </b-navbar-nav>
+        <HeaderAuthetication class="ml-auto" />
       </b-collapse>
     </b-navbar>
   </div>
 </template>
 
 <script>
+import HeaderAuthetication from "@/components/header/header.authetication/HeaderAuthetication.vue";
 export default {
-  name: "Header"
+  name: "Header",
+  components: {
+    HeaderAuthetication,
+  },
 };
 </script>

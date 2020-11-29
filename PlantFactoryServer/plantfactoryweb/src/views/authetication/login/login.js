@@ -1,4 +1,6 @@
-import UserService from "@/services/user.service.js";
+import { mapActions } from "vuex";
+import Route from "@/types/route";
+
 export default {
   name: "Login",
   data() {
@@ -13,10 +15,13 @@ export default {
     console.log(this.form);
   },
   methods: {
+    ...mapActions("authentication", ["login"]),
+
     async onSubmit(event) {
       event.preventDefault();
-      let response = await UserService.login(this.form);
-      console.log("asd" + response);
+      //TODO: innen hiányzik a hibakezelés
+      await this.login(this.form);
+      this.$router.push({ path: Route.Dashboard.path });
     }
   }
 };

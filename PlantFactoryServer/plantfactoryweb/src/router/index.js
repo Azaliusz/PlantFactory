@@ -23,6 +23,14 @@ const routes = [
     name: "Registration",
     component: () =>
       import("@/views/authetication/registration/Registration.vue")
+  },
+  //#endregion
+
+  //#region Dashboard oldalak
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: () => import("@/views/dashboard/Dashboard.vue")
   }
   //#endregion
 ];
